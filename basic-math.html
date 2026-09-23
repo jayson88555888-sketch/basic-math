@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Basic Math | EDU-TECH</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: white;
+        min-height: 100vh;
+
+        background:
+            radial-gradient(
+                circle at 10% 10%,
+                rgba(99, 102, 241, 0.22),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 90% 20%,
+                rgba(168, 85, 247, 0.20),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 50% 100%,
+                rgba(59, 130, 246, 0.12),
+                transparent 35%
+            ),
+            linear-gradient(
+                135deg,
+                #070a1d,
+                #101534,
+                #171039
+            );
+
+        overflow-x: hidden;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+        width: 100%;
+        padding: 17px 7%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        background: rgba(7, 10, 29, 0.78);
+        backdrop-filter: blur(18px);
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .logo {
+        font-size: 25px;
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+
+    .logo span {
+        color: #8b7cff;
+    }
+
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+
+        padding: 10px 18px;
+
+        color: white;
+        text-decoration: none;
+
+        border-radius: 30px;
+
+        background: rgba(139, 124, 255, 0.13);
+        border: 1px solid rgba(139, 124, 255, 0.35);
+
+        transition: 0.3s ease;
+    }
+
+    .back-btn:hover {
+        background: #7667ff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(118, 103, 255, 0.3);
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+        text-align: center;
+        padding: 80px 20px 55px;
+    }
+
+    .hero-badge {
+        display: inline-block;
+
+        padding: 8px 18px;
+
+        border-radius: 30px;
+
+        color: #c9c2ff;
+
+        background: rgba(139, 124, 255, 0.12);
+        border: 1px solid rgba(139, 124, 255, 0.35);
+
+        font-size: 14px;
+        margin-bottom: 22px;
+    }
+
+    .hero h1 {
+        font-size: clamp(45px, 8vw, 80px);
+        line-height: 1;
+
+        margin-bottom: 22px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #ffffff,
+                #a99cff,
+                #e3bcff
+            );
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+        max-width: 720px;
+        margin: auto;
+
+        color: #c4c8df;
+
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       CONTAINER
+    ========================= */
+
+    .container {
+        width: min(1150px, 92%);
+        margin: auto;
+    }
+
+    .section {
+        margin: 65px 0;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .section-title h2 {
+        font-size: 32px;
+        margin-bottom: 9px;
+    }
+
+    .section-title p {
+        color: #aeb2cc;
+    }
+
+
+    /* =========================
+       TOPIC CARDS
+    ========================= */
+
+    .topic-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .topic-card {
+        padding: 28px 20px;
+
+        text-align: center;
+
+        border-radius: 23px;
+
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+
+        transition: 0.3s ease;
+    }
+
+    .topic-card:hover {
+        transform: translateY(-8px);
+
+        border-color: rgba(139, 124, 255, 0.65);
+
+        box-shadow:
+            0 15px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .topic-icon {
+        width: 68px;
+        height: 68px;
+
+        margin: 0 auto 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 20px;
+
+        background: rgba(139, 124, 255, 0.15);
+
+        font-size: 32px;
+    }
+
+    .topic-card h3 {
+        margin-bottom: 10px;
+    }
+
+    .topic-card p {
+        color: #b7bbd0;
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+
+    /* =========================
+       PICTURE SECTION
+    ========================= */
+
+    .material-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 28px;
+
+        padding: 28px;
+
+        border-radius: 25px;
+
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+    }
+
+    .material-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .material-text h3 {
+        font-size: 28px;
+        margin-bottom: 14px;
+    }
+
+    .material-text p {
+        color: #bfc2d7;
+        line-height: 1.7;
+        margin-bottom: 22px;
+    }
+
+    .material-image {
+        width: 100%;
+        height: 300px;
+
+        object-fit: cover;
+
+        border-radius: 18px;
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        transition: 0.3s ease;
+    }
+
+    .material-image:hover {
+        transform: scale(1.02);
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .main-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: fit-content;
+
+        padding: 13px 24px;
+
+        color: white;
+        text-decoration: none;
+
+        border: none;
+        border-radius: 30px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #7667ff,
+                #a855f7
+            );
+
+        font-size: 15px;
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: 0.3s ease;
+    }
+
+    .main-btn:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 10px 30px rgba(124, 108, 255, 0.35);
+    }
+
+
+    /* =========================
+       VIDEO SECTION
+    ========================= */
+
+    .video-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+
+    .video-card {
+        padding: 18px;
+
+        border-radius: 23px;
+
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+
+        transition: 0.3s ease;
+    }
+
+    .video-card:hover {
+        transform: translateY(-5px);
+
+        border-color: rgba(139, 124, 255, 0.45);
+    }
+
+    .video-card h3 {
+        margin: 4px 5px 16px;
+        font-size: 20px;
+    }
+
+    .video-wrapper {
+        position: relative;
+
+        width: 100%;
+
+        padding-bottom: 56.25%;
+
+        height: 0;
+
+        overflow: hidden;
+
+        border-radius: 16px;
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+
+        left: 0;
+        top: 0;
+
+        border: none;
+    }
+
+
+    /* =========================
+       PDF SECTION
+    ========================= */
+
+    .pdf-card {
+        text-align: center;
+
+        padding: 45px 25px;
+
+        border-radius: 25px;
+
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+    }
+
+    .pdf-icon {
+        font-size: 65px;
+        margin-bottom: 15px;
+    }
+
+    .pdf-card h3 {
+        font-size: 27px;
+        margin-bottom: 10px;
+    }
+
+    .pdf-card p {
+        color: #b8bbd0;
+        margin-bottom: 24px;
+    }
+
+
+    /* =========================
+       CALCULATOR
+    ========================= */
+
+    .calculator {
+        max-width: 700px;
+
+        margin: auto;
+
+        padding: 30px;
+
+        border-radius: 25px;
+
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+    }
+
+    .calculator-grid {
+        display: grid;
+
+        grid-template-columns: 1fr 120px 1fr;
+
+        gap: 12px;
+
+        align-items: center;
+    }
+
+    .calculator input,
+    .calculator select {
+        width: 100%;
+
+        padding: 14px;
+
+        border-radius: 13px;
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+
+        background: rgba(0, 0, 0, 0.25);
+
+        color: white;
+
+        outline: none;
+
+        font-size: 16px;
+    }
+
+    .calculator input:focus,
+    .calculator select:focus {
+        border-color: #8173ff;
+    }
+
+    .calculator select option {
+        color: black;
+    }
+
+    .calculate-btn {
+        width: 100%;
+
+        margin-top: 20px;
+
+        padding: 14px;
+
+        border: none;
+        border-radius: 15px;
+
+        background: #7667ff;
+
+        color: white;
+
+        font-size: 16px;
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: 0.3s ease;
+    }
+
+    .calculate-btn:hover {
+        background: #8d80ff;
+    }
+
+    .result {
+        text-align: center;
+
+        margin-top: 20px;
+
+        padding: 18px;
+
+        border-radius: 15px;
+
+        background: rgba(139, 124, 255, 0.12);
+
+        color: #ddd9ff;
+
+        font-size: 22px;
+
+        font-weight: bold;
+    }
+
+
+    /* =========================
+       QUICK LEARNING
+    ========================= */
+
+    .learning-grid {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 20px;
+    }
+
+    .learning-card {
+        padding: 25px;
+
+        border-radius: 20px;
+
+        background: rgba(255, 255, 255, 0.05);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        transition: 0.3s ease;
+    }
+
+    .learning-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .learning-card h3 {
+        margin-bottom: 15px;
+    }
+
+    .example {
+        padding: 13px;
+
+        margin: 8px 0;
+
+        border-radius: 11px;
+
+        background: rgba(0, 0, 0, 0.18);
+
+        color: #d4d6e6;
+    }
+
+    .example strong {
+        color: #bcb3ff;
+    }
+
+
+    /* =========================
+       QUIZ
+    ========================= */
+
+    .quiz-box {
+        max-width: 750px;
+
+        margin: auto;
+
+        padding: 30px;
+
+        border-radius: 25px;
+
+        background: rgba(255, 255, 255, 0.055);
+
+        border: 1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+    }
+
+    .quiz-progress {
+        color: #aaaed0;
+
+        margin-bottom: 15px;
+    }
+
+    .question {
+        font-size: 24px;
+
+        font-weight: 700;
+
+        margin-bottom: 20px;
+    }
+
+    .answers {
+        display: grid;
+        gap: 12px;
+    }
+
+    .answer-btn {
+        width: 100%;
+
+        padding: 15px;
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+
+        border-radius: 13px;
+
+        background: rgba(255, 255, 255, 0.05);
+
+        color: white;
+
+        cursor: pointer;
+
+        text-align: left;
+
+        font-size: 15px;
+
+        transition: 0.25s ease;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+        background: rgba(139, 124, 255, 0.2);
+
+        border-color: #8173ff;
+
+        transform: translateX(3px);
+    }
+
+    .answer-btn:disabled {
+        cursor: default;
+    }
+
+    .answer-btn.correct {
+        background: rgba(34, 197, 94, 0.2);
+
+        border-color: #22c55e;
+    }
+
+    .answer-btn.wrong {
+        background: rgba(239, 68, 68, 0.2);
+
+        border-color: #ef4444;
+    }
+
+    .quiz-result {
+        text-align: center;
+
+        margin-top: 25px;
+
+        font-size: 22px;
+
+        font-weight: bold;
+
+        color: #d8d3ff;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+        text-align: center;
+
+        padding: 45px 20px;
+
+        margin-top: 70px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+        color: #9498b5;
+    }
+
+    footer strong {
+        color: #b8afff;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+        .topic-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .material-card {
+            grid-template-columns: 1fr;
+        }
+
+        .video-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+    @media (max-width: 600px) {
+
+        header {
+            padding: 14px 5%;
+        }
+
+        .logo {
+            font-size: 21px;
+        }
+
+        .back-btn {
+            padding: 8px 13px;
+            font-size: 13px;
+        }
+
+        .hero {
+            padding-top: 55px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+        }
+
+        .hero p {
+            font-size: 15px;
+        }
+
+        .section {
+            margin: 45px 0;
+        }
+
+        .section-title h2 {
+            font-size: 27px;
+        }
+
+        .topic-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .learning-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .calculator-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .calculator-grid select {
+            margin: 3px 0;
+        }
+
+        .material-card {
+            padding: 18px;
+        }
+
+        .material-image {
+            height: 230px;
+        }
+
+        .quiz-box {
+            padding: 20px;
+        }
+
+        .question {
+            font-size: 20px;
+        }
+    }
+</style>
+
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header>
+
+    <div class="logo">
+        EDU<span>-TECH</span>
+    </div>
+
+    <a href="index.html" class="back-btn">
+        ← Back
+    </a>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero">
+
+    <div class="hero-badge">
+        📚 Learning • Practice • Quiz
+    </div>
+
+    <h1>Basic Math</h1>
+
+    <p>
+        Learn the fundamentals of mathematics through
+        simple explanations, visual materials, video lessons,
+        interactive calculations and quizzes.
+    </p>
+
+</section>
+
+
+<main class="container">
+
+
+    <!-- =========================
+         TOPICS
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>🔢 Math Topics</h2>
+
+            <p>
+                Start with these four important mathematical operations.
+            </p>
+
+        </div>
+
+
+        <div class="topic-grid">
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    ➕
+                </div>
+
+                <h3>Addition</h3>
+
+                <p>
+                    Combine two or more numbers to find the total.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    ➖
+                </div>
+
+                <h3>Subtraction</h3>
+
+                <p>
+                    Find the difference between two numbers.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    ✖️
+                </div>
+
+                <h3>Multiplication</h3>
+
+                <p>
+                    Use repeated addition to calculate quantities.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    ➗
+                </div>
+
+                <h3>Division</h3>
+
+                <p>
+                    Split a number into equal groups.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PICTURE
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>🖼️ Visual Learning</h2>
+
+            <p>
+                Use the picture as an additional learning reference.
+            </p>
+
+        </div>
+
+
+        <div class="material-card">
+
+
+            <div class="material-text">
+
+                <h3>
+                    📐 Math Learning Picture
+                </h3>
+
+                <p>
+                    Explore the visual material below to help
+                    understand important mathematical concepts.
+                    You can also open the picture in a new tab
+                    for a larger view.
+                </p>
+
+                <a
+                    href="basic-math-picture.jpg"
+                    target="_blank"
+                    class="main-btn">
+
+                    🔍 View Full Picture
+
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <img
+                    src="basic-math-picture.jpg"
+                    alt="Basic Math Learning Picture"
+                    class="material-image">
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         VIDEO LESSONS
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>🎬 Video Lessons</h2>
+
+            <p>
+                Watch these videos to improve your understanding
+                of mathematics.
+            </p>
+
+        </div>
+
+
+        <div class="video-grid">
+
+
+            <!-- VIDEO 1 -->
+
+            <div class="video-card">
+
+                <h3>
+                    🎥 Fractions & Decimals
+                </h3>
+
+                <div class="video-wrapper">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/Mst8iZjIpFE"
+                        title="Math Antics - Fractions and Decimals"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+            </div>
+
+
+            <!-- VIDEO 2 -->
+
+            <div class="video-card">
+
+                <h3>
+                    🎥 Pre-Algebra Introduction
+                </h3>
+
+                <div class="video-wrapper">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/vhm8ri0XNBM"
+                        title="Pre-Algebra - Basic Introduction"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PDF MATERIAL
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>📄 Learning Material</h2>
+
+            <p>
+                Open the PDF for additional notes and exercises.
+            </p>
+
+        </div>
+
+
+        <div class="pdf-card">
+
+            <div class="pdf-icon">
+                📘
+            </div>
+
+            <h3>
+                Basic Math Notes
+            </h3>
+
+            <p>
+                Read the PDF to review additional explanations,
+                examples and exercises.
+            </p>
+
+            <a
+                href="basic-math.pdf"
+                target="_blank"
+                class="main-btn">
+
+                📖 Open PDF
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CALCULATOR
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>🧮 Math Calculator</h2>
+
+            <p>
+                Enter two numbers and choose an operation.
+            </p>
+
+        </div>
+
+
+        <div class="calculator">
+
+
+            <div class="calculator-grid">
+
+
+                <input
+                    type="number"
+                    id="number1"
+                    placeholder="First number">
+
+
+                <select id="operator">
+
+                    <option value="+">
+                        +
+                    </option>
+
+                    <option value="-">
+                        −
+                    </option>
+
+                    <option value="*">
+                        ×
+                    </option>
+
+                    <option value="/">
+                        ÷
+                    </option>
+
+                </select>
+
+
+                <input
+                    type="number"
+                    id="number2"
+                    placeholder="Second number">
+
+
+            </div>
+
+
+            <button
+                class="calculate-btn"
+                onclick="calculate()">
+
+                Calculate
+
+            </button>
+
+
+            <div
+                class="result"
+                id="result">
+
+                Answer: —
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         QUICK LEARNING
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>💡 Quick Learning</h2>
+
+            <p>
+                Simple examples to help you remember.
+            </p>
+
+        </div>
+
+
+        <div class="learning-grid">
+
+
+            <div class="learning-card">
+
+                <h3>
+                    ➕ Addition
+                </h3>
+
+                <div class="example">
+                    5 + 3 =
+                    <strong>8</strong>
+                </div>
+
+                <div class="example">
+                    10 + 7 =
+                    <strong>17</strong>
+                </div>
+
+                <div class="example">
+                    20 + 15 =
+                    <strong>35</strong>
+                </div>
+
+            </div>
+
+
+            <div class="learning-card">
+
+                <h3>
+                    ➖ Subtraction
+                </h3>
+
+                <div class="example">
+                    8 − 3 =
+                    <strong>5</strong>
+                </div>
+
+                <div class="example">
+                    15 − 7 =
+                    <strong>8</strong>
+                </div>
+
+                <div class="example">
+                    30 − 12 =
+                    <strong>18</strong>
+                </div>
+
+            </div>
+
+
+            <div class="learning-card">
+
+                <h3>
+                    ✖️ Multiplication
+                </h3>
+
+                <div class="example">
+                    3 × 4 =
+                    <strong>12</strong>
+                </div>
+
+                <div class="example">
+                    5 × 6 =
+                    <strong>30</strong>
+                </div>
+
+                <div class="example">
+                    7 × 8 =
+                    <strong>56</strong>
+                </div>
+
+            </div>
+
+
+            <div class="learning-card">
+
+                <h3>
+                    ➗ Division
+                </h3>
+
+                <div class="example">
+                    10 ÷ 2 =
+                    <strong>5</strong>
+                </div>
+
+                <div class="example">
+                    20 ÷ 4 =
+                    <strong>5</strong>
+                </div>
+
+                <div class="example">
+                    30 ÷ 5 =
+                    <strong>6</strong>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         QUIZ
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>🎯 Basic Math Quiz</h2>
+
+            <p>
+                Test your mathematics knowledge.
+            </p>
+
+        </div>
+
+
+        <div class="quiz-box">
+
+
+            <div
+                class="quiz-progress"
+                id="quizProgress">
+
+                Question 1 of 8
+
+            </div>
+
+
+            <div
+                class="question"
+                id="question">
+
+                Loading question...
+
+            </div>
+
+
+            <div
+                class="answers"
+                id="answers">
+            </div>
+
+
+            <div
+                class="quiz-result"
+                id="quizResult">
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <p>
+        © 2026 <strong>EDU-TECH</strong> • Basic Math Learning
+    </p>
+
+    <p style="margin-top:8px;">
+        Learn • Practice • Improve 🚀
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+
+    /* =================================
+       CALCULATOR
+    ================================= */
+
+    function calculate() {
+
+        const number1 =
+            parseFloat(
+                document.getElementById("number1").value
+            );
+
+        const number2 =
+            parseFloat(
+                document.getElementById("number2").value
+            );
+
+        const operator =
+            document.getElementById("operator").value;
+
+        const result =
+            document.getElementById("result");
+
+
+        if (
+            isNaN(number1) ||
+            isNaN(number2)
+        ) {
+
+            result.textContent =
+                "Please enter both numbers.";
+
+            return;
+        }
+
+
+        let answer;
+
+
+        if (operator === "+") {
+
+            answer =
+                number1 + number2;
+
+        }
+
+
+        else if (operator === "-") {
+
+            answer =
+                number1 - number2;
+
+        }
+
+
+        else if (operator === "*") {
+
+            answer =
+                number1 * number2;
+
+        }
+
+
+        else if (operator === "/") {
+
+            if (number2 === 0) {
+
+                result.textContent =
+                    "Cannot divide by zero.";
+
+                return;
+            }
+
+            answer =
+                number1 / number2;
+
+        }
+
+
+        result.textContent =
+            "Answer: " + answer;
+
+    }
+
+
+    /* =================================
+       QUIZ QUESTIONS
+    ================================= */
+
+    const quizQuestions = [
+
+        {
+            question: "What is 5 + 3?",
+            answers: [
+                "6",
+                "7",
+                "8",
+                "9"
+            ],
+            correct: "8"
+        },
+
+
+        {
+            question: "What is 10 − 4?",
+            answers: [
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            correct: "6"
+        },
+
+
+        {
+            question: "What is 6 × 3?",
+            answers: [
+                "12",
+                "15",
+                "18",
+                "21"
+            ],
+            correct: "18"
+        },
+
+
+        {
+            question: "What is 20 ÷ 4?",
+            answers: [
+                "4",
+                "5",
+                "6",
+                "8"
+            ],
+            correct: "5"
+        },
+
+
+        {
+            question: "What is 12 + 8?",
+            answers: [
+                "18",
+                "20",
+                "22",
+                "24"
+            ],
+            correct: "20"
+        },
+
+
+        {
+            question: "What is 15 − 7?",
+            answers: [
+                "6",
+                "7",
+                "8",
+                "9"
+            ],
+            correct: "8"
+        },
+
+
+        {
+            question: "What is 7 × 5?",
+            answers: [
+                "30",
+                "35",
+                "40",
+                "45"
+            ],
+            correct: "35"
+        },
+
+
+        {
+            question: "What is 36 ÷ 6?",
+            answers: [
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            correct: "6"
+        }
+
+    ];
+
+
+    let currentQuestion = 0;
+
+    let score = 0;
+
+
+    /* =================================
+       LOAD QUESTION
+    ================================= */
+
+    function loadQuestion() {
+
+        const question =
+            quizQuestions[currentQuestion];
+
+
+        document.getElementById(
+            "quizProgress"
+        ).textContent =
+            "Question " +
+            (currentQuestion + 1) +
+            " of " +
+            quizQuestions.length;
+
+
+        document.getElementById(
+            "question"
+        ).textContent =
+            question.question;
+
+
+        const answersContainer =
+            document.getElementById(
+                "answers"
+            );
+
+
+        answersContainer.innerHTML = "";
+
+
+        document.getElementById(
+            "quizResult"
+        ).textContent = "";
+
+
+        question.answers.forEach(
+            function(answer) {
+
+
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.className =
+                    "answer-btn";
+
+
+                button.textContent =
+                    answer;
+
+
+                button.onclick =
+                    function() {
+
+                        checkAnswer(
+                            button,
+                            answer
+                        );
+
+                    };
+
+
+                answersContainer.appendChild(
+                    button
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =================================
+       CHECK ANSWER
+    ================================= */
+
+    function checkAnswer(
+        button,
+        answer
+    ) {
+
+        const question =
+            quizQuestions[currentQuestion];
+
+
+        const buttons =
+            document.querySelectorAll(
+                ".answer-btn"
+            );
+
+
+        buttons.forEach(
+            function(btn) {
+
+                btn.disabled = true;
+
+            }
+        );
+
+
+        if (
+            answer ===
+            question.correct
+        ) {
+
+            button.classList.add(
+                "correct"
+            );
+
+            score++;
+
+        }
+
+        else {
+
+            button.classList.add(
+                "wrong"
+            );
+
+
+            buttons.forEach(
+                function(btn) {
+
+                    if (
+                        btn.textContent ===
+                        question.correct
+                    ) {
+
+                        btn.classList.add(
+                            "correct"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        setTimeout(
+            function() {
+
+                currentQuestion++;
+
+
+                if (
+                    currentQuestion <
+                    quizQuestions.length
+                ) {
+
+                    loadQuestion();
+
+                }
+
+                else {
+
+                    showQuizResult();
+
+                }
+
+            },
+            900
+        );
+
+    }
+
+
+    /* =================================
+       QUIZ RESULT
+    ================================= */
+
+    function showQuizResult() {
+
+        document.getElementById(
+            "quizProgress"
+        ).textContent =
+            "Quiz Complete 🎉";
+
+
+        document.getElementById(
+            "question"
+        ).textContent =
+            "Well done!";
+
+
+        document.getElementById(
+            "answers"
+        ).innerHTML = "";
+
+
+        let message;
+
+
+        if (score === 8) {
+
+            message =
+                "Perfect Score! 🏆";
+
+        }
+
+        else if (score >= 6) {
+
+            message =
+                "Great Job! 🌟";
+
+        }
+
+        else if (score >= 4) {
+
+            message =
+                "Good Try! 👍";
+
+        }
+
+        else {
+
+            message =
+                "Keep Practising! 💪";
+
+        }
+
+
+        document.getElementById(
+            "quizResult"
+        ).innerHTML =
+            message +
+            "<br><br>Your Score: " +
+            score +
+            " / " +
+            quizQuestions.length;
+
+    }
+
+
+    /* =================================
+       START QUIZ
+    ================================= */
+
+    loadQuestion();
+
+
+</script>
+
+
+</body>
+</html>
